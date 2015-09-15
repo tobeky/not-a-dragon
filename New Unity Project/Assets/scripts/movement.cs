@@ -7,10 +7,13 @@ public class movement : MonoBehaviour {
 	public int speed; //makes ball speed changeable
 	private int score; //establishes score variable
 	public Text scoreshow; //creates visible score
+	public Text timer; //manipulate time
+	private int playtime;
 
 	// Use this for initialization
 	void Start () {
 		rbody = GetComponent <Rigidbody> ();
+		playtime = 0;
 
 	}
 	
@@ -27,11 +30,24 @@ public class movement : MonoBehaviour {
 
 	void OnTriggerEnter (Collider trigger) {
 		score = score + 1; //increases score by one
-		scoreshow.text = "Your score is " + score; //displays score
+		scoreshow.text = score + " out of 4 collected"; //displays score
 		trigger.gameObject.SetActive(false); //makes disappear when hit
 		if(score >= 4) {
-			scoreshow.text = "Win!";
+			scoreshow.text = "You win!";
 		}
 	}
-	
+
+	void Update (){
+		if (score < 4) {
+			new WaitForSeconds (1);
+			playtime = playtime + 1;
+		} 
+		else {
+			Time.timeScale = 0;
+		}
+	}
+
+	void OnGUI() {
+		timer.text = "Score is " + playtime;
+	}
 }
