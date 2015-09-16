@@ -3,17 +3,17 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class movement : MonoBehaviour {
-	private Rigidbody rbody; //variable for sphere
+	private Rigidbody rBody; //variable for sphere
 	public int speed; //makes ball speed changeable
 	private int score; //establishes score variable
-	public Text scoreshow; //creates visible score
-	public Text timer; //manipulate time
-	private int playtime;
+	public Text showScore; //creates visible score
+	public Text timer; //shows time
+	private int playTime; //counts the time
 
 	// Use this for initialization
 	void Start () {
-		rbody = GetComponent <Rigidbody> ();
-		playtime = 0;
+		rBody = GetComponent <Rigidbody> ();
+		playTime = 0;
 
 	}
 	
@@ -22,32 +22,30 @@ public class movement : MonoBehaviour {
 		float xMovement = Input.GetAxis ("Horizontal");
 		float zMovement = Input.GetAxis ("Vertical");
 
-		rbody.AddForce (new Vector3 (xMovement, 0, 0)*speed); //this makes ball move along x axis
-		rbody.AddForce (new Vector3 (0, 0, zMovement)*speed); //this makes ball move along z axis
-
+		rBody.AddForce (new Vector3 (xMovement, 0, zMovement)*speed); //this makes ball move along x and z axis
 
 	}
 
 	void OnTriggerEnter (Collider trigger) {
 		score = score + 1; //increases score by one
-		scoreshow.text = score + " out of 4 collected"; //displays score
+		showScore.text = score + " out of 4 collected"; //displays score
 		trigger.gameObject.SetActive(false); //makes disappear when hit
 		if(score >= 4) {
-			scoreshow.text = "You win!";
+			showScore.text = "You win!"; //adds win condition
 		}
 	}
 
 	void Update (){
-		if (score < 4) {
+		if (score < 4) { //only does this if score is under 4
 			new WaitForSeconds (1);
-			playtime = playtime + 1;
+			playTime = playTime + 1; //makes playTime increase every millisecond
 		} 
 		else {
-			Time.timeScale = 0;
+			Time.timeScale = 0; //if score is 4 or above, it stops the game
 		}
 	}
 
 	void OnGUI() {
-		timer.text = "Score is " + playtime;
+		timer.text = "Score is " + playTime; //displays time
 	}
 }
