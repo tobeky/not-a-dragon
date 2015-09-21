@@ -25,12 +25,12 @@ public class playerMovement : MonoBehaviour {
 
 		playerRigidbody.MovePosition (transform.position + movement);
 
-		float currRotation = transform.rotation.eulerAngles.y; 
+		float currRotation = transform.rotation.eulerAngles.y; //rotational movement
 		float targetAngle = currRotation + turnMovement * Time.deltaTime * turnSpeed;
 		Quaternion newRotation = Quaternion.Euler (new Vector3 (0, targetAngle, 0));
 		playerRigidbody.MoveRotation (newRotation);
 
-		if (forwardMovement == 0 && turnMovement == 0) {
+		if (forwardMovement == 0 && turnMovement == 0) { //animations
 			playerAnimator.SetBool ("isWalking", false);
 		} 
 		else {
