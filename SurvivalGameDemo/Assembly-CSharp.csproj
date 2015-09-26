@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\bunnyMove.cs" />
+     <Compile Include="Assets\Scripts\playerAttack.cs" />
      <Compile Include="Assets\Scripts\playerMovement.cs" />
      <None Include="Assets\Fonts\LuckiestGuy\LICENSE.txt" />
  <Reference Include="UnityEngine.Analytics">

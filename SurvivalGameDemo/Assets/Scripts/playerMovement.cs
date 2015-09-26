@@ -4,8 +4,8 @@ using System.Collections;
 public class playerMovement : MonoBehaviour {
 
 	Rigidbody playerRigidbody;
-	public float movementSpeed = 6;
-	public float turnSpeed = 6;
+	public float movementSpeed = 10;
+	public float turnSpeed = 100;
 
 	Animator playerAnimator;
 
