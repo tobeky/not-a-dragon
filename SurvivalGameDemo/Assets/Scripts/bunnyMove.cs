@@ -7,7 +7,7 @@ public class bunnyMove : MonoBehaviour {
 	NavMeshAgent nav;
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
 		nav = GetComponent <NavMeshAgent> ();
 	
